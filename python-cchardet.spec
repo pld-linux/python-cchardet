@@ -3,7 +3,7 @@
 # Conditional build:
 %bcond_without	tests	# do not perform "make test"
 %bcond_without	python2 # CPython 2.x module
-%bcond_without	python3 # CPython 3.x module
+%bcond_with	python3 # CPython 3.x module (built from python3-cchardet.spec)
 
 Summary:	cChardet - high speed universal character encoding detector
 Summary(pl.UTF-8):	cChardet - szybki, uniwersalny wykrywacz kodowania znaków
@@ -104,9 +104,8 @@ rm -rf $RPM_BUILD_ROOT
 %py_install
 
 %py_postclean
-%if %{with python3}
-%{__rm} $RPM_BUILD_ROOT%{_bindir}/cchardetect
-%endif
+
+%{__mv} $RPM_BUILD_ROOT%{_bindir}/cchardetect{,-2}
 %endif
 
 %if %{with python3}
@@ -120,9 +119,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc CHANGES.rst README.rst
-%if %{without python3}
-%attr(755,root,root) %{_bindir}/cchardetect
-%endif
+%attr(755,root,root) %{_bindir}/cchardetect-2
 %dir %{py_sitedir}/cchardet
 %{py_sitedir}/cchardet/*.py[co]
 %attr(755,root,root) %{py_sitedir}/cchardet/*.so
