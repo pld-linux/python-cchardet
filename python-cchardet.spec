@@ -10,7 +10,7 @@ Summary(pl.UTF-8):	cChardet - szybki, uniwersalny wykrywacz kodowania znaków
 Name:		python-cchardet
 # keep 2.1.5 here for python2 support
 Version:	2.1.5
-Release:	6
+Release:	7
 License:	MPL v1.1
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/cchardet/
